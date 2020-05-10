@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {{if hasmath}} {{insert head_katex.html }}     {{end}}
+  {{if hascode}} {{insert head_highlight.html }}   {{end}}
+  <link rel="stylesheet" href="/css/franklin.css">
+  <link rel="stylesheet" href="/css/hypertext.css">
+  <link rel="icon" href="/assets/favicon.png">
+  <title>{{isdef website_title}}{{fill website_title}}{{end}}{{isdef title}} - {{fill title}} {{end}}</title>
+</head>
+<body>
+  <header>
+    <h1><a href="/">Plane Geometry in Julia</a></h1>
+    <nav>
+      <a href="/" class="current">Introduction</a>
+    | <a href="/objects/">Geometric Objects</a>
+    | <a href="/theorems/">Theorems</a>
+    | <a href="/menu3/">Menu 3</a>
+      <hr/>
+    </nav>
+  </header>
+
+<!-- Content appended here -->
