@@ -5,21 +5,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {{if hasmath}} {{insert head_katex.html }}     {{end}}
   {{if hascode}} {{insert head_highlight.html }}   {{end}}
-  <link rel="stylesheet" href="/css/franklin.css">
-  <link rel="stylesheet" href="/css/hypertext.css">
-  <link rel="icon" href="/assets/favicon.png">
-  <title>{{isdef website_title}}{{fill website_title}}{{end}}{{isdef title}} - {{fill title}} {{end}}</title>
+  <link rel="stylesheet" href="/css/jtd.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  <link rel="icon" href="/assets/favicon.ico">
+  {{isdef title}} <title>{{fill website_title}} - {{fill title}}</title>  {{end}}
 </head>
-<body>
-  <header>
-    <h1><a href="/">Plane Geometry in Julia</a></h1>
-    <nav>
-      <a href="/" class="current">Introduction</a>
-    | <a href="/objects/">Geometric Objects</a>
-    | <a href="/theorems/">Theorems</a>
-    | <a href="/menu3/">Menu 3</a>
-      <hr/>
-    </nav>
-  </header>
+<body>                      <!-- closed in foot.html -->
+  <div class="page-wrap">   <!-- closed in foot.html -->
+    <!-- SIDE BAR -->
+    <div class="side-bar">
+      <div class="header">
+        <a href="https://github.com/newptcai/PlaneGeometry.jl" class="title">
+          PlaneGeometry.jl
+        </a>
+      </div>
+      <label for="show-menu" class="show-menu">MENU</label>
+      <input type="checkbox" id="show-menu" role="button">
+      <div class="menu" id="side-menu">
+        <ul class="menu-list">
+          <li class="menu-list-item {{ispage index}}active{{end}}"><a href="/" class="menu-list-link
+                  {{ispage index}}active{{end}}">Introduction</a>
+          <li class="menu-list-item {{ispage definitions/*}}active{{end}}"><a href="/definitions/"
+                  class="menu-list-link {{ispage definitions}}active{{end}}">Definitions</a>
+            <ul class="menu-list-child-list ">
+              <li class="menu-list-item  {{ispage definitions/elementary}}active{{end}}"><a href="/definitions/elementary/"
+                      class="menu-list-link {{ispage definitions/elementary}}active{{end}}">Elementary</a>
+              <li class="menu-list-item  {{ispage definitions/distances}}active{{end}}"><a href="/definitions/distances/"
+                      class="menu-list-link {{ispage definitions/distances}}active{{end}}">Distances</a>
+              <li class="menu-list-item  {{ispage definitions/triangles}}active{{end}}"><a href="/definitions/triangles/"
+                      class="menu-list-link {{ispage definitions/triangles}}active{{end}}">Triangles</a>
+              <li class="menu-list-item  {{ispage definitions/circles}}active{{end}}"><a href="/definitions/circles/"
+                      class="menu-list-link {{ispage definitions/circles}}active{{end}}">Circles</a>
+            </ul>
+          <li class="menu-list-item {{ispage theorems/*}}active{{end}}"><a href="/theorems/"
+                  class="menu-list-link {{ispage theorems}}active{{end}}">Theorems</a>
+          <li class="menu-list-item {{ispage utilities/*}}active{{end}}"><a href="/utilities/"
+                  class="menu-list-link {{ispage utilities}}active{{end}}">Utilities</a>
+          <li class="menu-list-item {{ispage thanks/*}}active{{end}}"><a href="/thanks/"
+                  class="menu-list-link {{ispage thanks}}active{{end}}">Acknowledgement</a>
+        </ul>
+      </div>
+      <div class="footer">
+          <center>
+          <img src="/assets/PlaneGeometry-footer.svg" width="60px"/>
+          </center>
+      </div>
+    </div>
+    <!-- CONTENT -->
+    <div class="main-content-wrap"> <!-- closed in foot.html -->
+      <div class="main-content">    <!-- closed in foot.html -->
+        <div class="main-header">
+          <a id="github" href="//github.com/newptcai/PlaneGeometry.jl">PlaneGeometry.jl on GitHub</a>
+        </div>
 
-<!-- Content appended here -->
+
+<!-- Content appended here (in class franklin-content) -->

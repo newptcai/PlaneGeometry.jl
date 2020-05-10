@@ -157,6 +157,12 @@ uuid = "8f399da3-3557-5675-b5ff-fb832c97cbdb"
 deps = ["Libdl"]
 uuid = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
 
+[[Literate]]
+deps = ["Base64", "JSON", "REPL"]
+git-tree-sha1 = "7345603884151a5ef894fb85949a8a4faeae8e10"
+uuid = "98b081ad-f1c9-55d3-8b20-4c87d4299306"
+version = "2.4.0"
+
 [[Logging]]
 uuid = "56ddb016-857b-54e1-b83d-db4d58db5568"
 
@@ -234,11 +240,9 @@ version = "1.0.3"
 deps = ["Dates", "LibGit2", "Libdl", "Logging", "Markdown", "Printf", "REPL", "Random", "SHA", "UUIDs"]
 uuid = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
 
-[[PlaneGeomety]]
+[[PlaneGeometry]]
 deps = ["Plots", "SymPy"]
-git-tree-sha1 = "fc2fdec62ae66d7cf4e9f7ea80ea24c6de109896"
-repo-rev = "master"
-repo-url = "../PlaneGeometry"
+path = "../PlaneGeometry"
 uuid = "a98ab51e-f91e-4d39-a747-22ff6ff0c30f"
 version = "0.1.0"
 

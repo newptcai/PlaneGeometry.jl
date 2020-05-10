@@ -17,3 +17,51 @@ For instance:
 -->
 \newcommand{\R}{\mathbb R}
 \newcommand{\scal}[1]{\langle #1 \rangle}
+
+\newcommand{\example}[2]{
+```julia:./!#1 
+#2 
+savefig(joinpath(@OUTPUT, "!#1.svg")) # hide
+```
+\output{./!#1}
+\fig{./!#1}
+}
+
+\newcommand{\docpic}[2]{
+@@docstring
+@@doc-content
+# Picture
+```julia:./!#1 
+#2 
+savefig(joinpath(@OUTPUT, "!#1.svg")) # hide
+```
+\output{./!#1}
+\fig{./!#1}
+@@
+@@
+}
+
+\newcommand{\showcode}[2]{
+```julia
+!#2
+```
+```julia:./!#1 
+#hideall
+print((@code_string !#2))
+```
+\output{./!#1}
+}
+
+\newcommand{\toclist}[2]{
+```julia:./!#1
+#hideall
+println("@@list")
+for name in !#2
+    println("""
+    * [$name](#$name)
+    """)
+end
+println("@@")
+```
+\textoutput{./!#1}
+}

@@ -5,124 +5,129 @@
 the config file by setting hasmath = false for instance and just setting it to true
 where appropriate -->
 
-\tableofcontents <!-- you can use \toc as well -->
+<!-- \tableofcontents you can use \toc as well -->
 
-# A book from the future
+# Introduction
 
-![wooden-robot-6069.jpg](/assets/wooden-robot-6069.jpg)
+*This website originated from a [blog
+post](https://newptcai.github.io/euclidean-plane-geometry-with-julia.html) I wrote. I have since
+cleaned up the code and put everything into a Julia package
+[PlaneGeometry.jl](https://github.com/newptcai/PlaneGeometry.jl).*
 
-~~~
-<center>
-    Photo by Kaboompics .com from Pexels
-</center>
-~~~
+## A book from the future
 
-When I first got interested in computer algebra systems, I came across a [book](https://sites.math.rutgers.edu/~zeilberg/GT.html)
+When I first got interested in computer algebra systems (CAS), I came across a
+[book](https://sites.math.rutgers.edu/~zeilberg/GT.html)
 
-```
-PLANE  GEOMETRY:   AN  ELEMENTARY  TEXTBOOK 
-BY   SHALOSH  B.  EKHAD,  XIV   (CIRCA  2050)    
-DOWNLOADED  FROM  THE  FUTURE  BY   DORON  ZEILBERGER
-```
+\figalt{PLANE GEOMETRY: AN ELEMENTARY TEXTBOOK BY SHALOSH B. EKHAD}{/assets/book.png}
+
 
 Of course, Shalosh is not really a time traveler from a future. He/she/it is the computer of [Doron
 Zeilberger](https://sites.math.rutgers.edu/~zeilberg/), a mathematician who has been
 [advocating](https://sites.math.rutgers.edu/~zeilberg/OPINIONS.html) for the use of computers in
-mathematics for decades. He often writes articles and papers with Shalosh named as a coauthor.
+mathematics for decades. He often writes articles and papers with Shalosh named as a co-author.
 
-The title his book is just a joke. What Zeilberger really wants to say is that in the future, kids won't need to learn to do (at least) plane geometry with pencil and paper anymore. Their homework will be writing codes so their computer 🤖️ will do the math for them.
+\figalt{Doron Zeilberger}{/assets/Doron_Zeilberger_(circa_2005).jpg}
+~~~
+<center>
+    Doron Zeilberge (circa 2005) from <a
+    href="https://en.wikipedia.org/wiki/Doron_Zeilberger">Wikipeida</a>
+</center>
+~~~
 
-The book was written with Maple. But in principle, this can be done in any programming languages. 
-With `SymPy.jl` handling the symbolic computation and `Plots.jl` drawing nice pictures, Julia has become a good choice for this task. Writing the code in a modern language also makes things a bit more organized. Moreover, Julia is free but Maple costs 🤑️.
+The book title is just a joke 😀️. What Zeilberger really wants to say is that in the future, kids
+won't need to learn to do (at least) plane geometry with pencil and paper any more. Their homework
+will be writing codes so their computer 🤖️ will do the mathematics for them.
 
-So in this post I am to show you in details how to repeat Zeilberger's [proof](https://sites.math.rutgers.edu/~zeilberg/PG/Napoleon.html) of [Napoleon's theorem](https://en.wikipedia.org/wiki/Napoleon%27s_theorem) using Julia. According to Wikipedia, 
-> In geometry, Napoleon's theorem states that if equilateral triangles are constructed on the sides of any triangle, either all outward or all inward, the lines connecting the centres of those equilateral triangles themselves form an equilateral triangle.
+## A new book with Julia
 
-The code in this notebook has been collected into a package [`PlaneGeometry.jl`](https://github.com/newptcai/PlaneGeometry.jl)
+\figalt{Julia}{/assets/julia-logo-color.png}
 
-# Install needed packages
+Zeilberger's book was created with Maple, a powerful commercial CAS. But in principle, this can be done
+in any programming languages, e.g., [Julia](https://julialang.org/), which is a *fast,
+dynamically and optionally typed, easy-to-use, open-sourced* modern programming language. Its syntax is
+similar to `Python`, but superior in my opinion 🤓️.  
 
-We will need [`SymPy.jl`](https://github.com/JuliaPy/SymPy.jl) for the computation and
-[`Plot.jl`](https://github.com/JuliaPlots/Plots.jl) for some nice plots. Run the following code if
-you don't already have them.
+Admittedly, Julia is not a CAS. But with the
+package [SymPy.jl](https://github.com/JuliaPy/SymPy.jl) handling symbolic computation and
+[Plots.jl](https://github.com/JuliaPlots/Plots.jl) drawing nice pictures, Julia is a reasonably
+good choice for writing a book like the one Zeilberger wrote.
 
+So I have written a Julia package [PlaneGeometry.jl](https://github.com/newptcai/PlaneGeometry.jl)
+to create Zeilberger's book. The purpose is mainly to demonstrate the use of various
+Julia packages, and for myself to learn a bit more about programming in Julia.
+
+## PlaneGeometry.jl
+
+![PlaneGeometry](/assets/PlaneGeometry.svg)
+
+You can learn how to install Julia [here](https://julialang.org/downloads/). I will assume that you
+have already done that and learned a bit about how to use Julia.
+
+To install PlaneGeometry.jl, open the [Julia REPL](https://docs.julialang.org/en/v1/stdlib/REPL/) and run the following
+code.
 
 ```julia
 using Pkg; 
 Pkg.activate("."); 
-Pkg.add("SymPy")
-Pkg.add("Plots")
+Pkg.add(PackageSpec(url="https://github.com/newptcai/PlaneGeometry.jl"))
 ```
 
-# Define some basic geometry objects
+After that, you can load PlaneGeometry.jl in to REPL by
 
-
-```julia:./obj.jl
-import Base: isequal, ==, show
-
-abstract type GeoObject end
-abstract type GeoShape <: GeoObject end
-
-show(io::IO, objs::Vector{T}) where T <: GeoObject = print(io, "[", join(objs, ",\n"), "]")
-
-struct Point <: GeoObject
-    x::Number
-    y::Number
-end
-(==)(p1::Point, p2::Point) = p1.x==p2.x && p1.y==p2.y
-show(io::IO, pt::Point) = print(io, "Point($(pt.x), $(pt.y))") # hide
-
-struct Triangle <: GeoShape
-    A::Point
-    B::Point
-    C::Point
-end
-Triangle(ax, ay, bx, by, cx, cy) = Triangle(Point(ax, ay), Point(bx, by), Point(cx, cy))
-(==)(t1::Triangle, t2::Triangle) = vertices(t1) == vertices(t2)
-show(io::IO, tri::Triangle) = print(io, "Triangle($(tri.A), $(tri.B), $(tri.C))")
-
-function vertices(tri::Triangle) 
-    [tri.A, tri.B, tri.C]
-end
-
-struct Edge <: GeoShape
-    src::Point
-    dst::Point
-end
-
-function edges(tri::Triangle)
-    elist = Edge[]
-    pts = vertices(tri)
-    for i in 1:length(pts)-1
-        push!(elist, Edge(pts[i], pts[i+1]))
-    end
-    push!(elist, Edge(pts[length(pts)], pts[1]))
-    elist
-end
-
-struct Circle
-    center::Point
-    radius::Number
-end
-(==)(c1::Circle, c2::Circle) = c1.center == c2.center && c1.radius == c2.radius
-show(io::IO, c::Circle) = print(io, "Circle($(c.center), $(c.radius))")
-
-ccenter(c::Circle) = c.center
+```julia:./using
+using PlaneGeometry
 ```
+
+My original [post](https://newptcai.github.io/euclidean-plane-geometry-with-julia.html) is about
+proving [Napoleon's theorem](https://en.wikipedia.org/wiki/Napoleon%27s_theorem). You can find a
+revised version using PlaneGeometry.jl [here](/theorems/Napoleon).  Other theorems proved in this
+packaged are list [here](/theorems).  There is also a [list](/definitions) of geometric definitions
+that we need.
+
+## How this website is created?
+
+This website is built using two packages --
+
+* [Franklin.jl](https://github.com/tlienart/Franklin.jl) -- A fast and simple static website
+  generator written in Julia. It works very well with Julia packages. I recommend to
+  anyone who's already familiar with Julia.
+* [CodeTracking.jl](https://github.com/timholy/CodeTracking.jl) -- Most code snippets from
+  PlaneGeometry.jl you see here are actually retrieved in this way. I try to avoid copy and paste as
+  much as possible.
+
+<!--
+
+The rest of this introduction will demonstrate in details how PlaneGeometry.jl proves [Napoleon's
+theorem](https://en.wikipedia.org/wiki/Napoleon%27s_theorem), which, according to Wikipedia,
+
+> ... states that if equilateral triangles are constructed on the sides
+> of any triangle, either all outward or all inward, the lines connecting the centres of those
+> equilateral triangles themselves form an equilateral triangle.
+
+You can find more theorems that can proved in this way [here](theorems). I will add more from time
+to time.
 
 # How to draw a triangle
 
-Let's consider the following triangle.
-
+Some basics geometrics objects such as `Point`, `Triangle` and `Circle` are defined in
+PlaneGeometry.jl.  To start proving the theorem, we let's consider a triangle consisting of 3 vertices $A, B,
+C$ defined as below:
 
 ```julia:./tri.jl
-A = Point(0,0); B = Point(1, 3); C = Point(4,2);
+A = Point(0,0); B = Point(1, 3); C = Point(4,2)
 tri = Triangle(A, B, C)
 ```
 
-To draw it, we create a `Plots.Shape` object.
+To draw triangle, we need to create a `Plots.Shape` object for the triangle.
 
+```julia:./shape-tri
+using PlaneGeometry.Plots
+trishape=shape(tri)
 
+println(trishape) #hide
+```
+\output{./shape-tri}
 
 ```julia:./shape-tri.jl
 using Plots
@@ -140,6 +145,10 @@ println(trishape) #hide
 ```
 
 \output{./shape-tri}
+
+
+
+Let's consider the following triangle.
 
 
 Then we can just feed the shape into `plot()`. The `leg=false` argument hides the unnecessary plot legend.
@@ -178,7 +187,7 @@ function squaredist(A, B)
 end;
 ```
 
-To find these two points, we need to solve a quadratic equation. For this we use `SymPy.jl`.
+To find these two points, we need to solve a quadratic equation. For this we use SymPy.jl.
 
 ```julia:./equipoints.jl
 using SymPy
@@ -570,3 +579,5 @@ This time it works!
 
 
 So, Napoleon is right! 😀️ But do you think future kids will actually prove this theorem like this in class? 🤔️
+
+-->
