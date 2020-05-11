@@ -1,0 +1,90 @@
+<!doctype html> <html lang=en > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1"> <link rel=stylesheet  href="/PlaneGeometry.jl/libs/katex/katex.min.css"> <link rel=stylesheet  href="/PlaneGeometry.jl/libs/highlight/github.min.css"> <link rel=stylesheet  href="/PlaneGeometry.jl/css/jtd.css"> <link rel=stylesheet  href="/PlaneGeometry.jl/css/custom.css"> <link rel=icon  href="/PlaneGeometry.jl/assets/favicon.ico"> <title>Plane Geometry in Julia - Elementary Definitions</title> <div class=page-wrap > <div class=side-bar > <div class=header > <a href="https://github.com/newptcai/PlaneGeometry.jl" class=title > PlaneGeometry.jl </a> </div> <label for=show-menu  class=show-menu >MENU</label> <input type=checkbox  id=show-menu  role=button > <div class=menu  id=side-menu > <ul class=menu-list > <li class="menu-list-item "><a href="/PlaneGeometry.jl/" class="menu-list-link ">Introduction</a> <li class="menu-list-item active"><a href="/PlaneGeometry.jl/definitions/" class="menu-list-link ">Definitions</a> <ul class="menu-list-child-list "> <li class="menu-list-item active"><a href="/PlaneGeometry.jl/definitions/elementary/" class="menu-list-link active">Elementary</a> <li class="menu-list-item "><a href="/PlaneGeometry.jl/definitions/distances/" class="menu-list-link ">Distances</a> <li class="menu-list-item "><a href="/PlaneGeometry.jl/definitions/triangles/" class="menu-list-link ">Triangles</a> <li class="menu-list-item "><a href="/PlaneGeometry.jl/definitions/circles/" class="menu-list-link ">Circles</a> </ul> <li class="menu-list-item "><a href="/PlaneGeometry.jl/theorems/" class="menu-list-link ">Theorems</a> <li class="menu-list-item "><a href="/PlaneGeometry.jl/utilities/" class="menu-list-link ">Utilities</a> <li class="menu-list-item "><a href="/PlaneGeometry.jl/thanks/" class="menu-list-link ">Acknowledgement</a> </ul> </div> <div class=footer > <center> <img src="/PlaneGeometry.jl/assets/PlaneGeometry-footer.svg" width=60px /> </center> </div> </div> <div class=main-content-wrap > <div class=main-content > <div class=main-header > <a id=github  href="/PlaneGeometry.jl//github.com/newptcai/PlaneGeometry.jl">PlaneGeometry.jl on GitHub</a> </div> <div class=franklin-content ><h1 id=elementary ><a href="#elementary">Elementary</a></h1> <div class=list ><ul> <li><p><a href="#Point">Point</a></p> <li><p><a href="#Edge">Edge</a></p> <li><p><a href="#Triangle">Triangle</a></p> <li><p><a href="#Circle">Circle</a></p> </ul> </div> <p> <div class=docstring > <h2 class=doc-header  id=Point > <a href="#Point">Point</a> </h2> <div class=doc-content ><h1 id=definition ><a href="#definition">Definition</a></h1> <pre><code class="julia hljs">Point(x, y)</code></pre>
+<p>A point at coordinate <code>&#40;x, y&#41;</code>.</p>
+<h2 id=mathematical_definition ><a href="#mathematical_definition">Mathematical definition</a></h2>
+<blockquote>
+<p>In modern mathematics, a point refers usually to an element of some set called a space.  Euclid originally defined the point as &quot;that which has no part&quot;.</p>
+</blockquote>
+<h2 id=example ><a href="#example">Example</a></h2>
+<pre><code class="julia hljs">A = Point(<span class=hljs-number >0</span>,<span class=hljs-number >0</span>); B = Point(<span class=hljs-number >1</span>, <span class=hljs-number >3</span>); C = Point(<span class=hljs-number >4</span>,<span class=hljs-number >2</span>)</code></pre>
+<h1 id=function ><a href="#function">Function</a></h1>
+<pre><code class="julia hljs">Point()</code></pre>
+<p>A point at coordinate <code>&#40;0, 0&#41;</code>.</div>
+  </div>
+</p>
+<div class=docstring ><div class=doc-content ><h1 id=picture ><a href="#picture">Picture</a></h1>  <pre><code class="julia hljs">A = Point(<span class=hljs-number >0</span>,<span class=hljs-number >0</span>); B = Point(<span class=hljs-number >1</span>, <span class=hljs-number >3</span>); C = Point(<span class=hljs-number >4</span>,<span class=hljs-number >2</span>)
+scatter(shape([A, B, C]), leg=<span class=hljs-literal >false</span>, aspect_ratio=:equal, 
+    color=:red, series_annotations = text.([<span class=hljs-string >"A"</span>, <span class=hljs-string >"B"</span>, <span class=hljs-string >"C"</span>], :bottom))</code></pre>  <img src="/PlaneGeometry.jl/assets/definitions/elementary/output/ex1.svg" alt=""></div></div>
+<p>  <div class=docstring >
+      <h2 class=doc-header  id=Edge >
+        <a href="#Edge">Edge</a>
+        </h2>
+      <div class=doc-content ><h1 id=definition__2 ><a href="#definition__2">Definition</a></h1>
+<pre><code class="julia hljs">Edge(src, dst)</code></pre>
+<p>An edge from point <code>src</code> to point <code>dst</code>.</p>
+<h2 id=mathematical_definition__2 ><a href="#mathematical_definition__2">Mathematical definition</a></h2>
+<blockquote>
+<p>In geometry, an edge is a particular type of line segment joining two vertices in a polygon, polyhedron, or higher-dimensional polytope.</p>
+</blockquote>
+<h2 id=example__2 ><a href="#example__2">Example</a></h2>
+<pre><code class="julia hljs"><span class=hljs-literal >e</span> = Edge(Point(<span class=hljs-number >0</span>, <span class=hljs-number >0</span>), Point(<span class=hljs-number >1</span>, <span class=hljs-number >3</span>))</code></pre></div>
+  </div>
+</p>
+<div class=docstring ><div class=doc-content ><h1 id=picture__2 ><a href="#picture__2">Picture</a></h1>  <pre><code class="julia hljs">plot(shape(Edge(A, B)), leg=<span class=hljs-literal >false</span>)
+scatter!(shape([A,B]), leg=<span class=hljs-literal >false</span>, aspect_ratio=:equal, 
+    color=:red, series_annotations = text.([<span class=hljs-string >"A"</span>, <span class=hljs-string >"B"</span>], :bottom))</code></pre>  <img src="/PlaneGeometry.jl/assets/definitions/elementary/output/ex2.svg" alt=""></div></div>
+<p>  <div class=docstring >
+      <h2 class=doc-header  id=Triangle >
+        <a href="#Triangle">Triangle</a>
+        </h2>
+      <div class=doc-content ><h1 id=definition__3 ><a href="#definition__3">Definition</a></h1>
+<pre><code class="julia hljs">Triangle(A, B, C)</code></pre>
+<p>A triangle with vertices <code>A, B, C</code>.</p>
+<h2 id=mathematical_definition__3 ><a href="#mathematical_definition__3">Mathematical definition</a></h2>
+<blockquote>
+<p>A triangle is a polygon with three edges and three vertices.</p>
+</blockquote>
+<h2 id=example__3 ><a href="#example__3">Example</a></h2>
+<pre><code class="julia hljs">A = Point(<span class=hljs-number >0</span>,<span class=hljs-number >0</span>); B = Point(<span class=hljs-number >1</span>, <span class=hljs-number >3</span>); C = Point(<span class=hljs-number >4</span>,<span class=hljs-number >2</span>)
+tri = Triangle(A, B, C)</code></pre>
+<h1 id=function__2 ><a href="#function__2">Function</a></h1>
+<pre><code class="julia hljs">Triangle()</code></pre>
+<p>A triangle with vertices <code>&#40;0, 0&#41;, &#40;0, 1&#41;, &#40;1,1&#41;</code>.</p>
+<h1 id=definition__4 ><a href="#definition__4">Definition</a></h1>
+<pre><code class="julia hljs">Triangle(ax, ay, bx, by, cx, cy)</code></pre>
+<p>A triangle with vertices <code>&#40;ax, ay&#41;, &#40;bx, by&#41;, &#40;cx, cy&#41;</code>.</p>
+<h2 id=example__4 ><a href="#example__4">Example</a></h2>
+<pre><code class="julia hljs">tri = Triangle(<span class=hljs-number >0</span>, <span class=hljs-number >0</span>, <span class=hljs-number >1</span>, <span class=hljs-number >3</span>, <span class=hljs-number >4</span>, <span class=hljs-number >2</span>)</code></pre></div>
+  </div>
+</p>
+<div class=docstring ><div class=doc-content ><h1 id=picture__3 ><a href="#picture__3">Picture</a></h1>  <pre><code class="julia hljs">tri = Triangle(A, B, C)
+plot(tri, leg=<span class=hljs-literal >false</span>, fill=(<span class=hljs-number >0</span>, :green), aspect_ratio=:equal, fillalpha= <span class=hljs-number >0.2</span>)
+scatter!(shape([A, B, C]), leg=<span class=hljs-literal >false</span>,
+    color=:red, series_annotations = text.([<span class=hljs-string >"A"</span>, <span class=hljs-string >"B"</span>, <span class=hljs-string >"C"</span>], :bottom))</code></pre>  <img src="/PlaneGeometry.jl/assets/definitions/elementary/output/ex3.svg" alt=""></div></div>
+<p>  <div class=docstring >
+      <h2 class=doc-header  id=Circle >
+        <a href="#Circle">Circle</a>
+        </h2>
+      <div class=doc-content ><h1 id=definition__5 ><a href="#definition__5">Definition</a></h1>
+<pre><code class="julia hljs">Circle(c, r)</code></pre>
+<p>A circle with center at <code>c</code> and radius <code>r</code>.</p>
+<h2 id=mathematical_definition__4 ><a href="#mathematical_definition__4">Mathematical definition</a></h2>
+<blockquote>
+<p>A circle is a shape consisting of all points in a plane that are a given distance from a given point, the centre.</p>
+</blockquote>
+<h2 id=example__5 ><a href="#example__5">Example</a></h2>
+<pre><code class="julia hljs">circle = Circle(Point(<span class=hljs-number >0</span>, <span class=hljs-number >0</span>), <span class=hljs-number >1</span>)</code></pre></div>
+  </div>
+</p>
+<div class=docstring ><div class=doc-content ><h1 id=picture__4 ><a href="#picture__4">Picture</a></h1>  <pre><code class="julia hljs">c = Circle(A, <span class=hljs-number >1</span>)
+plot(c, leg=<span class=hljs-literal >false</span>, fill=(<span class=hljs-number >0</span>, :red), 
+    aspect_ratio=:equal, fillalpha= <span class=hljs-number >0.2</span>)
+scatter!(shape([A]), leg=<span class=hljs-literal >false</span>, color=:red, 
+    series_annotations = text.([<span class=hljs-string >"A"</span>], :bottom))</code></pre>  <img src="/PlaneGeometry.jl/assets/definitions/elementary/output/ex4.svg" alt=""></div></div><div class=page-foot >
+  <div class=copyright >
+    &copy; Xing Shi Cai. Last modified: May 11, 2020. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a>.
+  </div>
+</div>
+</div>
+    </div> 
+    </div> 
+    </div> <!-- end of class page-wrap-->

@@ -1,0 +1,8 @@
+# This file was generated, do not modify it. # hide
+tri = Triangle(A, B, C)
+tri_out = outer_equitri(A, B, C)
+scatter(shape([A, B, C]), leg=false, color=:red, 
+    series_annotations = text.(["A", "B", "C"], :bottom))
+plot!(tri_out, leg=false, fill=(0, :pink), aspect_ratio=:equal, fillalpha= 0.7)
+plot!(tri, fill=(0, :green), aspect_ratio=:equal, fillalpha= 0.2) 
+savefig(joinpath(@OUTPUT, "ex6.svg")) # hide
