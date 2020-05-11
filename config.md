@@ -6,6 +6,7 @@ The website_* must be defined for the RSS to work
 @def website_title = "Plane Geometry in Julia"
 @def website_descr = "A web geometry textbook created in Julia"
 @def website_url   = "https://newptcai.github.io/PlaneGeometryInJulia/"
+def @def prepath = "PlaneGeometry.jl"
 
 @def author = "Xing Shi Cai"
 

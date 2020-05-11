@@ -17,4 +17,4 @@ scatter(shape([A, B, C]), leg=false, color=:red,
 plot!(c, fill=(0, :orange), aspect_ratio=:equal, fillalpha= 0.2)
 }
 
-{{code circumcircle([Point(), Point(), Point()])}}
+{{code circumcircle([Point(0,0)])}}
