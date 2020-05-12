@@ -41,6 +41,7 @@ end
 Find the midpoint between `A` and `B`.
 
 # Examples
+
 ```jldoctest
 julia> midpoint(Point(0, 0), Point(2,4))
 Point(1, 2)
@@ -56,7 +57,14 @@ end
 """
     concurrent(edgelist::Vector{Edge})
 
-Find the point where all `edges` (lines) intersect if such point exists. Return nothing otherwise.
+Find the point where all edges (lines) in `edgelist` intersect if such point exists. Return nothing otherwise.
+
+# Examples
+
+```jldoctest
+julia> concurrent([Edge(Point(0,1), Point(1,1)), Edge(Point(0,1), Point(1,0))])
+Point(0, 1)
+```
 """
 function concurrent(edgelist::Vector{Edge})
     enum = length(edgelist)
@@ -80,4 +88,20 @@ function concurrent(edgelist::Vector{Edge})
     else
         return Point(simplify(sol[x]), simplify(sol[y]))
     end
+end
+
+"""
+    concurrent(e1::Edge, e2::Edge)
+
+Find the point the edges `e1` and `e2` intersect if such point exists. Return nothing otherwise.
+
+# Examples
+
+```jldoctest
+julia> concurrent(Edge(Point(0,1), Point(1,1)), Edge(Point(0,1), Point(1,0)))
+Point(0, 1)
+```
+"""
+function concurrent(e1::Edge, e2::Edge)
+    return concurrent([e1, e2])
 end

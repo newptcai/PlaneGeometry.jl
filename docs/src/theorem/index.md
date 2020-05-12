@@ -6,5 +6,7 @@ the future 😉️.
 ```@contents
 Pages = [
     "Napoleon.md",
+    "Centroid.md",
+    "Ceva.md",
     ]
 ```

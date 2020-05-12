@@ -77,6 +77,7 @@ Verify Napoleon's theorem for a random triangle.
 """
 function napoleon_rand()
     pts = rand(0:1//10:1,6);
+    # Todo: sometimes this fails. Fix it.
     plt, hold = napoleon_draw(pts...)
 end
 

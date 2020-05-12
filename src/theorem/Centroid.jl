@@ -46,7 +46,7 @@ end
 """
     centroid_draw(A, B, C)
 
-Verify Napoleon's theorem.
+Verify Centroid Exists theorem.
 """
 function centroid_draw(A, B, C)
     tri = Triangle(A, B, C)
@@ -57,7 +57,7 @@ end
 """
     centroid_draw(xA, yA, xB, yB, xC, yC)
 
-Verify Napoleon's theorem.
+Verify Centroid Exists theorem.
 """
 function centroid_draw(xA, yA, xB, yB, xC, yC)
     A = Point(xA, yA); 

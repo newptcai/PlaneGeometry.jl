@@ -1,4 +1,4 @@
-import Base: isequal, ==, show
+import Base: isequal, ==, show, *, length, >
 using SymPy
 
 "A plane geometric object."
@@ -121,6 +121,18 @@ function edges(tri::Triangle)
     push!(elist, Edge(pts[length(pts)], pts[1]))
     elist
 end
+
+"Mulitpliy the lengths of two edges."
+(*)(e1::Edge, e2::Edge) = length(e1) * length(e2)
+
+"Mulitpliy a number and an edges length."
+(*)(s1::Sym, e2::Edge) = s1 * length(e2)
+
+"Compare lengths of two edges."
+(>)(e1::Edge, e2::Edge) = length(e1) > length(e2)
+
+"Find the length of an edge."
+length(e::Edge) = distance(e.src, e.dst)
 
 """
     Circle(c, r) 

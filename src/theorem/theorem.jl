@@ -3,6 +3,6 @@ module Theorems
 
 include("Napoleon.jl")
 include("Centroid.jl")
-
+include("Ceva.jl")
 
 end

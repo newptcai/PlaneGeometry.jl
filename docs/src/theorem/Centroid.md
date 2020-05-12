@@ -1,12 +1,13 @@
 # Centroid Exists Theorem
 
-See [Napoleon's Theorem](Napoleon.md) for an example with more explanations.
+See [Napoleon's Theorem](Napoleon.md) for an example with more detailed explanations of how to prove
+theorems with Julia.
 
 ```@setup 1
 using 
     PlaneGeometry, 
     PlaneGeometry.Theorems, 
-    PlaneGeometry.Theorems.Napoleon,
+    PlaneGeometry.Theorems.Centroid,
     Plots
 ```
 

@@ -52,7 +52,11 @@ scatter!(shape([A, B, mid]), leg=false, aspect_ratio=:equal,
 ## Concurrent Point
 
 ```@docs
-concurrent
+concurrent(::Vector{Edge})
+```
+
+```@docs
+concurrent(::Edge, ::Edge)
 ```
 
 ### Source Code

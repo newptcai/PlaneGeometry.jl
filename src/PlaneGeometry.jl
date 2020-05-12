@@ -39,12 +39,18 @@ using .GeoPlots
 export 
     plot, plot!, shape
 
-function __init__()
-    global A, B, C
+using .Theorems.Ceva
+export 
+    ceva_proof, ceva_draw, ceva_rand, ceva, ceva_check
 
-    A = Point(0, 0); 
-    B = Point(1, 3); 
-    C = Point(4, 2);
+function __init__()
+    global A, B, C, O, tri
+
+    A = Point(0, 0)
+    B = Point(1, 3)
+    C = Point(4, 2)
+    O = Point(2, 2)
+    tri = Triangle(A, B, C)
 end
 
 end # module
