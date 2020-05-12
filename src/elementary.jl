@@ -1,7 +1,3 @@
-# ------------------------------------------------------------------------------
-# Geometric objects
-# -------------------------------------------------------------------------------
-
 import Base: isequal, ==, show
 
 "A plane geometric object."
@@ -11,18 +7,11 @@ abstract type GeoShape <: GeoObject end
 show(io::IO, objs::Vector{T}) where T <: GeoObject = print(io, "[", join(objs, ", "), "]")
 
 """
-# Definition
-
     Point(x, y)
     
 A point at coordinate `(x, y)`.
 
-## Mathematical definition
-
-> In modern mathematics, a point refers usually to an element of some set called a space. 
-> Euclid originally defined the point as "that which has no part".
-
-## Example
+# Examples
 ```julia
 A = Point(0,0); B = Point(1, 3); C = Point(4,2)
 ```
@@ -53,17 +42,11 @@ const B = Point(1, 3);
 const C = Point(4,2)
 
 """
-# Definition
-
     Triangle(A, B, C) 
 
 A triangle with vertices `A, B, C`.
 
-## Mathematical definition
-
-> A triangle is a polygon with three edges and three vertices.
-
-## Example
+# Examples
 ```julia
 A = Point(0,0); B = Point(1, 3); C = Point(4,2)
 tri = Triangle(A, B, C)
@@ -90,13 +73,11 @@ A triangle with vertices `(0, 0), (0, 1), (1,1)`.
 Triangle() = Triangle(Point(0, 0), Point(0, 1), Point(1,1))
 
 """
-# Definition
-
     Triangle(ax, ay, bx, by, cx, cy)    
 
 A triangle with vertices `(ax, ay), (bx, by), (cx, cy)`.
 
-## Example
+# Examples
 ```julia
 tri = Triangle(0, 0, 1, 3, 4, 2)
 ```
@@ -112,17 +93,11 @@ function vertices(tri::Triangle)
 end
 
 """
-# Definition
-
     Edge(src, dst) 
 
 An edge from point `src` to point `dst`.
 
-## Mathematical definition
-
-> In geometry, an edge is a particular type of line segment joining two vertices in a polygon, polyhedron, or higher-dimensional polytope.
-
-## Example
+# Examples
 ```julia
 e = Edge(Point(0, 0), Point(1, 3))
 ```
@@ -146,17 +121,11 @@ function edges(tri::Triangle)
 end
 
 """
-# Definition
-
     Circle(c, r) 
     
 A circle with center at `c` and radius `r`.
 
-## Mathematical definition
-
-> A circle is a shape consisting of all points in a plane that are a given distance from a given point, the centre.
-
-## Example
+# Examples
 ```julia
 circle = Circle(Point(0, 0), 1)
 ```

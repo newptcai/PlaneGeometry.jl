@@ -5,8 +5,6 @@
 using SymPy
 
 """
-# Function
-
     equipoints(A, B)
 
 Find the two points the can form an equilateral triangle with `A` and `B`
@@ -22,8 +20,6 @@ function equipoints(A, B)
 end
 
 """
-# Function
-
     outer_equitri(A, B, C)
 
 Find the outer equilateral triangle of `Triangle(A, B, C)` which is incident to `Edge(A, B)`.
@@ -40,28 +36,24 @@ function outer_equitri(A, B, C)
 end
 
 """
-# Function
+    outer_equitriangles(📐️)
 
-    outer_equitriangles(tri)
-
-Find all three outer equilateral triangles of the triangle `tri`.
+Find all three outer equilateral triangles of the triangle `📐️`.
 """
-function outer_equitriangles(tri)
-    pts = vertices(tri)
+function outer_equitriangles(📐️)
+    pts = vertices(📐️)
     triangles = map(i->outer_equitri(circshift(pts, i)...), 0:2)
     triangles
 end
 
 
 """
-# Function
+    isequilateral(📐️)
 
-    isequilateral(tri)
-
-Check if `tri` is equilateral.
+Check if `📐️` is equilateral, i.e., if the three edges of `📐️` are of the same length.
 """
-function isequilateral(tri)
-    dist = [squaredist(e.src, e.dst) for e in edges(tri)]
+function isequilateral(📐️)
+    dist = [squaredist(e.src, e.dst) for e in edges(📐️)]
     if (dist[1] == dist[2]) && (dist[1] == dist[3])
         return true
     else

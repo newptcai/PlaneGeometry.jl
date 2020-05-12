@@ -4,6 +4,8 @@
 
 "Submodule containing functions for plotting geometric objects"
 module GeoPlots
+export 
+    plot, plot!, shape
 
 using PlaneGeometry
 using Plots

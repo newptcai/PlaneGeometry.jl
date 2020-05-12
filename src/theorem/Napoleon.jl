@@ -2,11 +2,10 @@
 # Napoleon's theorem
 # -------------------------------------------------------------------------------
 """
-The [theorem](https://en.wikipedia.org/wiki/Napoleon%27s_theorem) 
-
-> ... states that if equilateral triangles are constructed on the sides
-> of any triangle, either all outward or all inward, the lines connecting the centres of those
-> equilateral triangles themselves form an equilateral triangle.
+[Napoleon' theorem](https://en.wikipedia.org/wiki/Napoleon%27s_theorem) 
+states that if equilateral triangles are constructed on the sides
+of any triangle, either all outward or all inward, the lines connecting the centres of those
+equilateral triangles themselves form an equilateral triangle.
 """
 module Napoleon
 
@@ -15,15 +14,17 @@ using SymPy
 using PlaneGeometry
 using PlaneGeometry.GeoPlots
 
-"""
-    napoleon_draw(A, B, C)
+export 
+    napoleon_proof, napoleon_draw, napoleon_rand, napoleon_tri
 
-Demonstrate Napoleon's theorem. Return `(plt, hold)` where `plt` is a plot for demonstration and
-`hold` indicates where the theorem holds.
 """
-function napoleon_draw(A, B, C)
-    tri = Triangle(A, B, C)
+    napoleon_draw(📐️::Triangle)
 
+Verify Napoleon's theorem for the triangle `📐️`.  The function works the same ways as
+`napoleon_tri` but return `(🖼️, hold)` where `🖼️` is a plot and `hold` indicates where the theorem
+holds.
+"""
+function napoleon_draw(tri::Triangle)
     trishape=shape(tri)
 
     plot(trishape, leg=false, fill=(0, :green), aspect_ratio=:equal, fillalpha= 0.2)
@@ -49,10 +50,20 @@ function napoleon_draw(A, B, C)
 end
 
 """
+    napoleon_draw(A, B, C)
+
+Verify Napoleon's theorem.
+"""
+function napoleon_draw(A, B, C)
+    tri = Triangle(A, B, C)
+
+    napoleon_draw(tri)
+end
+
+"""
     napoleon_draw(xA, yA, xB, yB, xC, yC)
 
-Demonstrate Napoleon's theorem. Return `(plt, hold)` where `plt` is a plot for demonstration and
-`hold` indicates where the theorem holds.
+Verify Napoleon's theorem.
 """
 function napoleon_draw(xA, yA, xB, yB, xC, yC)
     A = Point(xA, yA); 
@@ -65,7 +76,7 @@ end
 """
     napoleon_rand()
 
-Demonstrate Napoleon's theorem for a random triangle.
+Verify Napoleon's theorem for a random triangle.
 """
 function napoleon_rand()
     pts = rand(0:1//10:1,6);
@@ -75,8 +86,7 @@ end
 """
     napoleon_proof()
 
-Proving Napoleon's theorem, i.e., the triangle that connects the center of three outer equilateral
-triangles of any triangle is itself an equilateral triangle.
+Prove Napoleon's theorem.
 """
 function napoleon_proof()
     @vars by cx positive=true;
@@ -91,9 +101,9 @@ end
 
 
 """
-    napoleon_tri(tri)
+    napoleon_tri(📐️)
 
-Find the triangle that connects the center of three outer equilateral triangles of `tri`.
+Find the triangle that connects the center of three outer equilateral triangles of `📐️`.
 """
 function napoleon_tri(tri)
     outer_tri = outer_equitriangles(tri);

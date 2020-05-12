@@ -13,26 +13,25 @@ export
     equipoints, outer_equitri, outer_equitriangles, isequilateral, 
 
     # circles
-    circumcircle
+    circumcircle,
     
+    # utilities
+    does_thmhold, @code_md
 
 include("elementary.jl")
-include("metric.jl")
+include("distance.jl")
 include("triangle.jl")
 include("circle.jl")
 include("simpy.jl")
 include("plots.jl")
-include("theorems/theorems.jl")
+include("util.jl")
+include("theorem/theorem.jl")
 
-using .Theorems: does_thmhold
-export 
-    does_thmhold
-
-using .Theorems.Napoleon: napoleon_proof, napoleon_draw, napoleon_rand, napoleon_tri
+using .Theorems.Napoleon
 export 
     napoleon_proof, napoleon_draw, napoleon_rand, napoleon_tri
 
-using .GeoPlots: plot, plot!, shape
+using .GeoPlots
 export 
     plot, plot!, shape
 
