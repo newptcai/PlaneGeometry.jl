@@ -53,15 +53,34 @@ end;
 """
     plot(obj::GeoObject, args...; kwargs...)
 
-Plot a geometric object `obj`.
+Plot `obj` on current plot.
 """
 plot(obj::GeoObject, args...; kwargs...) = plot(shape(obj), args...; kwargs...)
 
 """
     plot!(obj::GeoObject, args...; kwargs...)
 
-Plot a geometric object `obj` on current plot.
+Plot `obj` on current plot.
 """
 plot!(obj::GeoObject, args...; kwargs...) = plot!(shape(obj), args...; kwargs...)
 
+"""
+    plot!(edge::Edge, args...; kwargs...)
+
+Plot `edge` on current plot.
+"""
+function plot!(edge::Edge, args...; kwargs...)
+    eshape = shape(edge)
+    plot!(eshape.x, eshape.y, args...; kwargs...)
+end
+
+"""
+    plot(edge::Edge, args...; kwargs...)
+
+Plot `edge` on current plot.
+"""
+function plot(edge::Edge, args...; kwargs...)
+    eshape = shape(edge)
+    plot(eshape.x, eshape.y, args...; kwargs...)
+end
 end

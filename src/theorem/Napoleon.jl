@@ -1,6 +1,3 @@
-# ------------------------------------------------------------------------------
-# Napoleon's theorem
-# -------------------------------------------------------------------------------
 """
 [Napoleon' theorem](https://en.wikipedia.org/wiki/Napoleon%27s_theorem) 
 states that if equilateral triangles are constructed on the sides

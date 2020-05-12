@@ -18,6 +18,7 @@ makedocs(sitename="Plane Geometry in Julia",
                   [
                    "Summary" => "theorem/index.md",
                    "Napoleon" => "theorem/Napoleon.md",
+                   "Centroid" => "theorem/Centroid.md",
                   ],
                   "Utitlies" => "util.md",
                   "Ackowledgement" => "thanks.md",

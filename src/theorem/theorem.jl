@@ -2,5 +2,7 @@
 module Theorems
 
 include("Napoleon.jl")
+include("Centroid.jl")
+
 
 end

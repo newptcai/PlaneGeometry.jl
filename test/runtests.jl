@@ -17,7 +17,17 @@ using Test
         @test PlaneGeometry.center(c) == A
 
         @test squaredist(A, B) == 10
-        @test distance(A, B) == sqrt(10)
+        @test distance(A, B) == SymPy.sqrt(Sym(10))
+
+        @test midpoint(Point(0, 0), Point(2,4)) == Point(1, 2)
+        @test midpoint(A, B) == Point(1//2, 3//2)
+
+        @test median(A, B, C) == Edge(Point(1//2, 3//2), C)
+
+        @test concurrent(edges(tri)) == nothing
+
+        elist = map(i->median(circshift([A, B, C], i)...), 0:2)
+        @test concurrent(elist) == Point(5//3, 5//3)
 
         @test equipoints(A, B) == 
         [
@@ -63,5 +73,7 @@ using Test
             Point(sympy.sqrt(3)//6 + 5//2, sympy.sqrt(3)//2 + 5//2))
 
         @test napoleon_proof()
+
+        @test centroid_proof()
     end
 end

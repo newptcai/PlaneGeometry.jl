@@ -1,4 +1,5 @@
 import Base: isequal, ==, show
+using SymPy
 
 "A plane geometric object."
 abstract type GeoObject end
@@ -18,9 +19,11 @@ A = Point(0,0); B = Point(1, 3); C = Point(4,2)
 """
 struct Point <: GeoObject
     "x cooridnate"
-    x::Number
+    x::Sym
     "y cooridnate"
-    y::Number
+    y::Sym
+
+    Point(x, y) = new(Sym(x), Sym(y))
 end
 
 """
@@ -36,10 +39,6 @@ Point() = Point(0, 0)
 (==)(p1::Point, p2::Point) = p1.x==p2.x && p1.y==p2.y
 
 show(io::IO, pt::Point) = print(io, "Point($(pt.x), $(pt.y))")
-
-const A = Point(0,0); 
-const B = Point(1, 3); 
-const C = Point(4,2)
 
 """
     Triangle(A, B, C) 
@@ -108,6 +107,9 @@ struct Edge <: GeoShape
     "Ending point of an edge."
     dst::Point
 end
+
+"Check if two edges are at the same."
+(==)(e1::Edge, e2::Edge) = e1.src==e2.src && e1.dst==e2.dst
 
 "Get the list of edges of the triangle `tri`."
 function edges(tri::Triangle)

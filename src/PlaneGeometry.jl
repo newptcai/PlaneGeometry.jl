@@ -6,11 +6,11 @@ export
     GeoObject, Point, Edge, Triangle, Circle,
     vertices, edges,
 
-    # metrics
-    distance, squaredist,
+    # distances
+    distance, squaredist, midpoint, concurrent,
 
     # triangles
-    equipoints, outer_equitri, outer_equitriangles, isequilateral, 
+    equipoints, outer_equitri, outer_equitriangles, isequilateral, median,
 
     # circles
     circumcircle,
@@ -31,9 +31,20 @@ using .Theorems.Napoleon
 export 
     napoleon_proof, napoleon_draw, napoleon_rand, napoleon_tri
 
+using .Theorems.Centroid
+export 
+    centroid_proof, centroid_draw, centroid_rand, centroid
+
 using .GeoPlots
 export 
     plot, plot!, shape
 
+function __init__()
+    global A, B, C
+
+    A = Point(0, 0); 
+    B = Point(1, 3); 
+    C = Point(4, 2);
+end
 
 end # module

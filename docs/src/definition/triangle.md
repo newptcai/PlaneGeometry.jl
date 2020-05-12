@@ -92,3 +92,26 @@ for t in tri_out
 end
 plot!(tri, fill=(0, :green), aspect_ratio=:equal, fillalpha= 0.2)
 ```
+
+## Median
+
+```@docs
+median
+```
+
+### Source Code
+
+```@example 1
+@code_md median(Point(), Point(), Point()) # hide
+```
+
+### Picture
+
+```@example 1
+me = median(A, B, C)
+mid = midpoint(A, B)
+scatter(shape([A, B, C, mid]), leg=false, color=:red, 
+    series_annotations = text.(["A", "B", "C", "mid"], :bottom))
+plot!(me, color=:orange)
+plot!(tri, fill=(0, :green), aspect_ratio=:equal, fillalpha= 0.2)
+```

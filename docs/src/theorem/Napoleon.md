@@ -26,7 +26,7 @@ Given a triangle, to find its Napoleon triangle, we use the following function.
 napoleon_tri
 ```
 ```@example 1
-@code_md napoleon_tri(Triangle()) #
+@code_md napoleon_tri(Triangle()) # hide
 ```
 
 ## Examples
@@ -93,7 +93,7 @@ symbols provided by `SymPy`. Then we can just use `napoleon_tri` to find its Nap
 check if it is equilateral. We put the code in the following function.
 
 ```@example 1
-@code_md napoleon_proof()
+@code_md napoleon_proof() # hide
 ```
 
 And the final proof is a simple as one line of code ✌️.

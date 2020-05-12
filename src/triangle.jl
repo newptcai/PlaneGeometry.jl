@@ -60,3 +60,12 @@ function isequilateral(📐️)
         return false
     end
 end
+
+"""
+    median(A::Point, B::Point, C::Point)
+
+Find the edge from the midpoint of `A` and `B` to `C`.
+"""
+function median(A::Point, B::Point, C::Point)
+    Edge(midpoint(A, B), C)
+end
