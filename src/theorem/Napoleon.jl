@@ -15,18 +15,18 @@ export
     napoleon_proof, napoleon_draw, napoleon_rand, napoleon_tri
 
 """
-    napoleon_draw(📐️::Triangle)
+    napoleon_draw(📐️::Triangle, labels='A':'C')
 
 Verify Napoleon's theorem for the triangle `📐️`.  The function works the same ways as
 `napoleon_tri` but return `(🖼️, hold)` where `🖼️` is a plot and `hold` indicates where the theorem
 holds.
 """
-function napoleon_draw(tri::Triangle)
+function napoleon_draw(tri::Triangle, labels='A':'C')
     trishape=shape(tri)
 
     plot(trishape, leg=false, fill=(0, :green), aspect_ratio=:equal, fillalpha= 0.2)
 
-    scatter!(trishape.x, trishape.y, color=:red, series_annotations = text.(["A", "B", "C"], :bottom))
+    scatter!(trishape.x, trishape.y, color=:red, series_annotations = text.(labels, :bottom))
 
     outer_tri = outer_equitriangles(tri)
     for t in outer_tri
