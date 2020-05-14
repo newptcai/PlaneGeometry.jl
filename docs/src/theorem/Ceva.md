@@ -1,8 +1,5 @@
 # Ceva's Theorem
 
-See [Napoleon's Theorem](Napoleon.md) for an example with more detailed explanations of how to prove
-theorems with Julia.
-
 ```@setup 1
 using 
     PlaneGeometry, 
@@ -20,6 +17,8 @@ Pages = ["Ceva.md"]
 ```@docs
 PlaneGeometry.Theorems.Ceva
 ```
+
+![ceva-plot-1.svg](ceva-plot-1.svg)
 
 ## Finding the ceva and medians
 

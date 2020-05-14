@@ -17,6 +17,7 @@ Pages = ["Napoleon.md"]
 ```@docs
 PlaneGeometry.Theorems.Napoleon
 ```
+![napoleon-plot-1.svg](napoleon-plot-1.svg)
 
 ## Finding the Napoleon Triangle
 
